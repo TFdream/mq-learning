@@ -1,16 +1,36 @@
-/target/
+# maven ignore
+*target/
+!tools/*.jar
+*.war
+*.zip
+*.tar
+*.tar.gz
 
-# Java class files
-*.class
+# eclipse ignore
+*.settings/
+.project
+.classpath
 
-/.settings/
+# idea ignore
+.idea/
+*.ipr
+*.iml
+*.iws
 
-# Eclipse project files
-/.classpath
-/.project
-
-# logs
-/stacktrace.log
-/logs
+# temp ignore
 *.log
-*.log.*
+*.cache
+*.diff
+*.patch
+*.tmp
+
+# system ignore
+.DS_Store
+Thumbs.db
+
+sublime-project
+sublime-project.sublime-workspace
+
+coverage-report/
+
+catalina.home_IS_UNDEFINED/
