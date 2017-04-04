@@ -1,2 +1,7 @@
 # mq-in-action
-MQ such as [Kafka](https://kafka.apache.org/), [RocketMQ](https://github.com/alibaba/RocketMQ) practice code.
+Kafka, RocketMQ study notes.
+
+<br>
+[Kafka](https://kafka.apache.org/)
+<br>
+[RocketMQ](https://github.com/alibaba/RocketMQ)
