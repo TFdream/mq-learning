@@ -8,10 +8,10 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>ch2-rocketmq</artifactId>
+	<artifactId>kafka-sample</artifactId>
 	<packaging>jar</packaging>
 
-	<name>ch2-rocketmq</name>
+	<name>kafka-sample</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -19,15 +19,9 @@
 	</properties>
 
 	<dependencies>
-		<!--RocketMQ-->
 		<dependency>
-			<groupId>com.alibaba.rocketmq</groupId>
-			<artifactId>rocketmq-client</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
+			<groupId>org.apache.kafka</groupId>
+			<artifactId>kafka-clients</artifactId>
 		</dependency>
 
 		<!--log-->
@@ -43,6 +37,11 @@
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
 		</dependency>
 
 		<dependency>

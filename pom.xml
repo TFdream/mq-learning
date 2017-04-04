@@ -11,8 +11,8 @@
 	<url>http://maven.apache.org</url>
 
 	<modules>
-		<module>ch1-kafka</module>
-		<module>ch2-rocketmq</module>
+		<module>kafka-sample</module>
+		<module>rocketmq-sample</module>
 	</modules>
 	
 	<properties>
@@ -32,7 +32,7 @@
 			<dependency>
 				<groupId>com.alibaba.rocketmq</groupId>
 				<artifactId>rocketmq-client</artifactId>
-				<version>3.6.2.Final</version>
+				<version>3.5.8</version>
 			</dependency>
 
 			<!--log-->
@@ -73,7 +73,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
+				<version>3.5.1</version>
 				<configuration>
 					<source>${java.version}</source>
 					<target>${java.version}</target>
