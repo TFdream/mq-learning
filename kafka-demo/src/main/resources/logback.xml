@@ -1,6 +1,9 @@
 <configuration debug="false">
-    <contextName>mq-kafka</contextName>
-    <property name="LOG_HOME" value="D:/logs/" />
+
+    <property name="LOG_DIR" value="D:/logs/" />
+    <property name="appname" value="kafka-demo" />
+
+    <contextName>${appname}</contextName>
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
@@ -9,7 +12,7 @@
     </appender>
 
     <appender name="appInfo" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_HOME}/info/mq-kafka-info.log</file>
+        <file>${LOG_DIR}/info/${appname}-info.log</file>
         <appender>true</appender>
         <Encoding>UTF-8</Encoding>
 
@@ -19,7 +22,7 @@
 
         <!-- 每天生成日志文件 -->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_HOME}/info/mq-kafka.%d{yyyy-MM-dd}-info.log.gz
+            <fileNamePattern>${LOG_DIR}/info/${appname}.%d{yyyy-MM-dd}-info.log.gz
             </fileNamePattern>
             <!-- 日志文件保留15天 -->
             <maxHistory>360</maxHistory>

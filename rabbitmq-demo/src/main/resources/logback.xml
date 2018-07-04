@@ -1,7 +1,7 @@
 <configuration debug="false">
 
     <property name="LOG_DIR" value="D:/logs/" />
-    <property name="appname" value="rocketmq-demo" />
+    <property name="appname" value="rabbitmq-demo" />
 
     <contextName>${appname}</contextName>
 

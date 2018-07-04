@@ -2,30 +2,38 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.mindflow</groupId>
-	<artifactId>mq-in-action</artifactId>
+	<groupId>io.dreamstudio</groupId>
+	<artifactId>mq-tutorials</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
-	<name>mq-in-action</name>
+	<name>${project.artifactId}</name>
 	<url>http://maven.apache.org</url>
 
 	<modules>
 		<module>kafka-demo</module>
 		<module>rocketmq-demo</module>
+        <module>rabbitmq-demo</module>
 	</modules>
 	
 	<properties>
-		<rocketmq.version>3.5.8</rocketmq.version>
+		<rocketmq.version>4.2.0</rocketmq.version>
 		<kafka.version>0.9.0.0</kafka.version>
-		<gson.version>2.7</gson.version>
+		<gson.version>2.8.5</gson.version>
 		<slf4j.version>1.7.21</slf4j.version>
-		<logback.version>1.1.7</logback.version>
+		<logback.version>1.2.3</logback.version>
 		<java.version>1.7</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<dependencies>
+        <!-- gson -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>${gson.version}</version>
+        </dependency>
+
 		<!--slf4j-->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -41,40 +49,32 @@
 		</dependency>
 	</dependencies>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>ch.qos.logback</groupId>
-				<artifactId>logback-core</artifactId>
-				<version>${logback.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>ch.qos.logback</groupId>
-				<artifactId>logback-classic</artifactId>
-				<version>${logback.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>com.google.code.gson</groupId>
-				<artifactId>gson</artifactId>
-				<version>${gson.version}</version>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.5.1</version>
-				<configuration>
-					<source>${java.version}</source>
-					<target>${java.version}</target>
-					<testSource>${java.version}</testSource>
-					<testTarget>${java.version}</testTarget>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <testSource>${java.version}</testSource>
+                    <testTarget>${java.version}</testTarget>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
