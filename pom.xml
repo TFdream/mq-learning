@@ -14,6 +14,7 @@
 		<module>kafka-demo</module>
 		<module>rocketmq-demo</module>
         <module>rabbitmq-demo</module>
+		<module>spring-boot-rabbitmq-demo</module>
 	</modules>
 	
 	<properties>
