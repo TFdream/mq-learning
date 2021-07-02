@@ -27,6 +27,19 @@ public class DelayMessageSender {
     private RabbitTemplate rabbitTemplate;
 
     /**
+     * 配合 rabbitmq_delayed_message_exchange插件使用
+     * @param orderDTO
+     * @param delayMs
+     */
+    public void sendDelayMsg(CloseOrderDTO orderDTO, int delayMs) {
+        rabbitTemplate.convertAndSend(DelayQueueRandomTimeConfig.DELAY_EXCHANGE_NAME, DelayQueueRandomTimeConfig.DELAY_QUEUE_ROUTING_KEY, orderDTO, msg ->{
+            msg.getMessageProperties().setDelay(delayMs);
+            return msg;
+        });
+    }
+
+    //========方式二
+    /**
      * 发送任意时间间隔
      */
     public void sendRandomBatch() {
