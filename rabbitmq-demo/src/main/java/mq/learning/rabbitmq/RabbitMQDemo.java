@@ -1,10 +1,8 @@
 package mq.learning.rabbitmq;
 
-import mq.learning.commons.util.DecimalUtils;
-import mq.learning.commons.util.RandomUtils;
 import mq.learning.rabbitmq.config.SpringConfiguration;
-import mq.learning.rabbitmq.entity.OrderDTO;
 import mq.learning.rabbitmq.mq.OrderNotifySender;
+import mq.learning.rabbitmq.mq.delayqueue.DelayMessageSender;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -21,14 +19,14 @@ public class RabbitMQDemo {
         ApplicationContext context = new AnnotationConfigApplicationContext(SpringConfiguration.class);
 
         OrderNotifySender notifySender = context.getBean(OrderNotifySender.class);
+        //发送消息
+        notifySender.sendBatch();
 
-        for (int i=0; i<10; i++) {
-            OrderDTO orderDTO = new OrderDTO();
-            orderDTO.setId(Long.valueOf(i+1));
-            orderDTO.setOrderNo(String.format("ES20210702%s", RandomUtils.genRandomCode(5)));
-            orderDTO.setTotalAmount(DecimalUtils.valueOf(5000+i));
-            notifySender.sendMsg(orderDTO);
-        }
+        DelayMessageSender delayMessageSender = context.getBean(DelayMessageSender.class);
+        //发送固定时间间隔的延迟消息
+        delayMessageSender.sendFixedBatch();
+        //发送任意时间间隔的延迟消息
+        delayMessageSender.sendRandomBatch();
 
         TimeUnit.SECONDS.sleep(30);
     }

@@ -14,7 +14,7 @@ import org.springframework.context.annotation.PropertySource;
 @ComponentScan(basePackages = "mq.learning.rabbitmq")
 @PropertySource("classpath:rabbitmq.properties")
 // 引入其他配置类，多用于分模块开发
-@Import(RabbitMQConfig.class)
+@Import({RabbitMQConfig.class, DelayQueueFixedTimeConfig.class})
 @EnableRabbit   //在启动入口增加@EnableRabbit注解
 public class SpringConfiguration {
 
