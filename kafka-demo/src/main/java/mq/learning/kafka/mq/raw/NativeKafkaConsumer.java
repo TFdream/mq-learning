@@ -1,4 +1,4 @@
-package mq.learning.kafka;
+package mq.learning.kafka.mq.raw;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -11,16 +11,16 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-public class KafkaConsumerDemo {
+public class NativeKafkaConsumer {
 
 	public static void main(String[] args) {
 		
-		new KafkaConsumerDemo().consume();
+		new NativeKafkaConsumer().consume();
 	}
 
 	public void consume() {
 		
-		JsonParser jsonParser = new JsonParser();  
+		JsonParser jsonParser = new JsonParser();
 		
 		// and the consumer
 		KafkaConsumer<String, String> consumer = null;
@@ -29,7 +29,7 @@ public class KafkaConsumerDemo {
 			consumer = new KafkaConsumer<>(props);
 			
 			//subscribe topics
-			consumer.subscribe(Arrays.asList("hello", "test"));
+			consumer.subscribe(Arrays.asList("hellworld", "test"));
 			
 			while (true) {
 				ConsumerRecords<String, String> records = consumer.poll(100);
@@ -39,7 +39,7 @@ public class KafkaConsumerDemo {
 //							record.offset(), record.key(), record.value());
 					
 					switch (record.topic()) {
-						case "hello":
+						case "hellworld":
 						
 							JsonObject jObj = (JsonObject)jsonParser.parse(record.value()); 
 							switch (jObj.get("type").getAsString()) {
