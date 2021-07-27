@@ -6,6 +6,7 @@ import java.util.Properties;
 import mq.learning.kafka.util.PropertyUtils;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
+import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 
 public class NativeKafkaProducer {
@@ -26,11 +27,15 @@ public class NativeKafkaProducer {
 		Producer<String, String> producer = null;
 		try {
 			Properties props = PropertyUtils.load("producer_config.properties");
+			//配置分区策略
+			props.put(ProducerConfig.PARTITIONER_CLASS_CONFIG, "mq.learning.kafka.partition.MyPartitioner");
 			producer = new KafkaProducer<>(props);
 			
 			for (int i = 0; i < total; i++){
 				producer.send(new ProducerRecord<String, String>("hellworld",
-						String.valueOf(i), String.format("{\"type\":\"test\", \"t\":%d, \"k\":%d}", System.currentTimeMillis(), i)));
+						String.valueOf(i), String.format("{\"type\":\"test\", \"t\":%d, \"k\":%d}", System.currentTimeMillis(), i)), (metadata, e)->{if (e!=null) {
+					System.out.println("send error:"+e.getMessage());
+				}});
 				
 				// every so often send to a different topic
                 if (i % 1000 == 0) {
