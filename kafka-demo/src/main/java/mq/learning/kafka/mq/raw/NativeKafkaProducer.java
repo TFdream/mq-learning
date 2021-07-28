@@ -29,6 +29,9 @@ public class NativeKafkaProducer {
 			Properties props = PropertyUtils.load("producer_config.properties");
 			//配置分区策略
 			props.put(ProducerConfig.PARTITIONER_CLASS_CONFIG, "mq.learning.kafka.partition.MyPartitioner");
+			//幂等性 Producer（只能保证单分区上的幂等性）
+			props.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, true);
+
 			producer = new KafkaProducer<>(props);
 			
 			for (int i = 0; i < total; i++){

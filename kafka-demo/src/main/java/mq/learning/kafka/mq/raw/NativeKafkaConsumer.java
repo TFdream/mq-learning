@@ -1,6 +1,7 @@
 package mq.learning.kafka.mq.raw;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.Properties;
 
@@ -32,7 +33,7 @@ public class NativeKafkaConsumer {
 			consumer.subscribe(Arrays.asList("hellworld", "test"));
 			
 			while (true) {
-				ConsumerRecords<String, String> records = consumer.poll(100);
+				ConsumerRecords<String, String> records = consumer.poll(Duration.ofSeconds(1));
 				for (ConsumerRecord<String, String> record : records){
 					
 //					System.out.printf("offset -> %d, key -> %s, value -> %s",
@@ -63,6 +64,8 @@ public class NativeKafkaConsumer {
 							throw new IllegalStateException("Shouldn't be possible to get message on topic " + record.topic());
 					}
 				}
+				//手动提交位移
+				consumer.commitSync();
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
